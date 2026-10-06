@@ -50,4 +50,4 @@ praktikum tetap dikerjakan dan diperiksa kembali secara langsung.
 
 ## 10. Bukti Git 
 Tautan repository:https://github.com/DivvaRPP/basisdata.25430077
-Hash commit: 
+Hash commit: 979d218

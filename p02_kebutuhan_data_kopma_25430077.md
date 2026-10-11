@@ -61,6 +61,8 @@ Aturan bisnis digunakan sebagai pedoman agar pencatatan dan pengelolaan data Kop
 | AB-04 | Harga barang saat transaksi harus disimpan pada detail penjualan agar tidak berubah ketika harga barang saat ini diperbarui. |
 | AB-05 | NIM anggota harus unik. Pencarian anggota dapat dilakukan menggunakan nomor anggota atau NIM. |
 | AB-06 | Pemesanan barang kepada pemasok dilakukan ketika stok berada di bawah batas minimum.
+| AB-07 | Setiap kelipatan belanja Rp10.000 oleh anggota mendapatkan 1 poin loyalitas. |
+| AB-08 | Anggota yang memiliki 50 poin loyalitas dapat menukarkannya dengan potongan harga Rp5.000. |
 
 ## 6. Kebutuhan Informasi
 
@@ -72,6 +74,7 @@ Kopma membutuhkan informasi dari database untuk memantau penjualan, persediaan b
 | KI-02 | Lima barang terlaris setiap bulan | Menampilkan lima barang dengan jumlah penjualan terbanyak. |
 | KI-03 | Daftar barang dengan stok rendah | Menampilkan barang yang stoknya di bawah batas minimum. |
 | KI-04 | Sepuluh anggota paling aktif setiap bulan | Menampilkan anggota dengan total belanja terbesar. |
+| KI-05 | Menampilkan jumlah poin loyalitas setiap anggota dan anggota yang memenuhi syarat penukaran poin. |
 
 ## 7. Matriks CRUDS
 
@@ -80,7 +83,7 @@ Matriks CRUDS menunjukkan tindakan pada data dalam setiap proses bisnis. C berar
 | Proses Bisnis | Anggota | Barang | Petugas | Penjualan | Detail Penjualan | Pemasok | Pembelian | Detail Pembelian |
 |---|---|---|---|---|---|---|---|---|
 | PB-01 Pendaftaran anggota | C | - | R | - | - | - | - | - |
-| PB-02 Pencatatan penjualan | R, S | R, S, U | R | C | C | - | - | - |
+| PB-02 Pencatatan penjualan | R, S, U | R, S, U | R | C | C | - | - | - |
 | PB-03 Pemesanan barang | - | R, S | R | - | - | R, S | C | C |
 | PB-04 Penerimaan barang | - | U | R | - | - | R, S | R, U | R |
 | PB-05 Laporan bulanan | R | R | R | R | R | - | R | R |
@@ -103,6 +106,7 @@ Keterangan:
 | `no_nota_penjualan` | Nomor nota penjualan | PJ-2609-0142 | Unik per nota | Kasir |
 | `harga_satuan_detail_penjualan` | Harga jual saat transaksi | 4000 | Bilangan bulat ≥ 0 (rupiah) | Kasir |
 | `stok_barang` | Jumlah barang tersedia | 35 | Bilangan bulat ≥ 0 (AB-03) | Petugas gudang |
+| `poin_loyalitas` | Jumlah poin loyalitas yang dimiliki anggota | 25 | Bilangan bulat ≥ 0 | Ketua |
 
 ## 9. Kebutuhan Non-Fungsional Data
 

@@ -104,27 +104,27 @@ Total SKS diperoleh dari penjumlahan SKS seluruh mata kuliah yang dipilih. Data 
 | KI-07 | Menampilkan daftar mahasiswa yang mengambil kelas kuliah tertentu | Dosen dan admin akademik | nama_dosen, nama_mk, kelas, NIM, nama mahasiswa |
 | KI-08 | Menampilkan rekap nilai mahasiswa pada suatu semester | Admin akademik | NIM, nama, mata kuliah, semester, nilai_akhir |
 
-## 7. Matriks CRUDS
+## 7. Matriks CRUD
+
+Matriks CRUD menunjukkan tindakan pada data dalam setiap proses bisnis. C berarti Create, R berarti Read, U berarti Update, dan D berarti Delete.
 
 | Proses Bisnis | Mahasiswa | Mata Kuliah | Dosen | Semester | Kelas Kuliah | KRS | Detail KRS | Nilai |
 |---|---|---|---|---|---|---|---|---|
-| PB-01 Mengelola data mahasiswa | C,R,U,D,S | - | - | - | - | - | - | - |
-| PB-02 Mengelola mata kuliah | - | C,R,U,D,S | - | - | - | - | - | - |
-| PB-03 Membuka kelas kuliah | - | R,S | R,S | R,S | C,R,U,D,S | - | - | - |
-| PB-04 Mengisi KRS | R,S | R,S | - | R,S | R,S | C,R,U | - | - |
-| PB-05 Mencatat nilai mahasiswa | R,S | R,S | R,S | R | R,S | R | R | C,R,U |
-| PB-06 Mengelola data dosen | - | - | C,R,U,D,S | - | - | - | - | - |
-| PB-07 Mengelola data semester | - | - | - | C,R,U,D,S | - | - | - | - |
-| PB-08 Mengelola pilihan kelas dalam KRS | R,S | R,S | - | R,S | R,S | R,U | C,R,U,D | - |
+| PB-01 Mengelola data mahasiswa | C, R, U, D | - | - | - | - | - | - | - |
+| PB-02 Mengelola mata kuliah | - | C, R, U, D | - | - | - | - | - | - |
+| PB-03 Membuka kelas kuliah | - | R | R | R | C, R, U, D | - | - | - |
+| PB-04 Mengisi KRS | R | R | - | R | R | C, R, U | - | - |
+| PB-05 Mencatat nilai mahasiswa | R | R | R | R | R | R | R | C, R, U |
+| PB-06 Mengelola data dosen | - | - | C, R, U, D | - | - | - | - | - |
+| PB-07 Mengelola data semester | - | - | - | C, R, U, D | - | - | - | - |
+| PB-08 Mengelola pilihan kelas dalam KRS | R | R | - | R | R | R, U | C, R, U, D | - |
 
 **Keterangan:**
-
 - **C (Create):** menambahkan data.
-- **R (Read):** melihat atau membaca data.
-- **U (Update):** mengubah data.
+- **R (Read):** membaca atau menampilkan data.
+- **U (Update):** memperbarui data.
 - **D (Delete):** menghapus data.
-- **S (Search):** mencari data berdasarkan kata kunci atau kriteria tertentu.
-- Tanda `-` berarti proses tersebut tidak melakukan operasi pada entitas itu.
+- Tanda `-` berarti tidak ada operasi utama pada entitas tersebut dalam proses terkait.**Keterangan:**
 
 ## 8. Kamus Data Awal
 

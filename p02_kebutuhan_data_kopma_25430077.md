@@ -17,6 +17,7 @@ Berdasarkan studi kasus Kopma, terdapat lima proses bisnis utama yang dilakukan 
 | PB-03 | Memesan barang ke pemasok | Petugas gudang | Stok di bawah batas minimum |
 | PB-04 | Menerima barang dari pemasok | Petugas gudang | Barang datang bersama faktur |
 | PB-05 | Menyusun laporan bulanan | Ketua koperasi | Awal bulan |
+| PB-06 | Mengelola data master barang, petugas, dan pemasok | Ketua koperasi | Ada data baru atau perubahan data barang, petugas, dan pemasok |
 
 ## 3. Dokumen Sumber yang Dianalisis
 
@@ -76,37 +77,55 @@ Kopma membutuhkan informasi dari database untuk memantau penjualan, persediaan b
 | KI-04 | Sepuluh anggota paling aktif setiap bulan | Menampilkan anggota dengan total belanja terbesar. |
 | KI-05 | Menampilkan jumlah poin loyalitas setiap anggota dan anggota yang memenuhi syarat penukaran poin. |
 
-## 7. Matriks CRUDS
+## 7. Matriks CRUD
 
-Matriks CRUDS menunjukkan tindakan pada data dalam setiap proses bisnis. C berarti Create, R berarti Read, U berarti Update, D berarti Delete, dan S berarti Search.
+Matriks CRUD menunjukkan tindakan pada data dalam setiap proses bisnis. C berarti Create, R berarti Read, U berarti Update, dan D berarti Delete.
 
 | Proses Bisnis | Anggota | Barang | Petugas | Penjualan | Detail Penjualan | Pemasok | Pembelian | Detail Pembelian |
 |---|---|---|---|---|---|---|---|---|
 | PB-01 Pendaftaran anggota | C | - | R | - | - | - | - | - |
-| PB-02 Pencatatan penjualan | R, S, U | R, S, U | R | C | C | - | - | - |
-| PB-03 Pemesanan barang | - | R, S | R | - | - | R, S | C | C |
-| PB-04 Penerimaan barang | - | U | R | - | - | R, S | R, U | R |
-| PB-05 Laporan bulanan | R | R | R | R | R | - | R | R |
+| PB-02 Pencatatan penjualan | R, U | R, U | R | C | C | - | - | - |
+| PB-03 Pemesanan barang | - | R | R | - | - | R | C | C |
+| PB-04 Penerimaan barang | - | U | R | - | - | R | R, U | R |
+| PB-05 Laporan bulanan | R | R | R | R | R | - | - | - |
+| PB-06 Pengelolaan data master | - | C, R, U | C, R, U | - | - | C, R, U | - | - |
 
-Keterangan:
-- C (Create): menambahkan data baru.
-- R (Read): membaca atau menampilkan data.
-- U (Update): memperbarui data.
-- D (Delete): menghapus data.
-- S (Search): mencari data berdasarkan kriteria tertentu.
-- Tanda (-) berarti tidak ada tindakan utama pada entitas tersebut dalam proses terkait.
+**Keterangan:**
+- **C (Create):** menambahkan data.
+- **R (Read):** membaca atau menampilkan data.
+- **U (Update):** memperbarui data.
+- **D (Delete):** menghapus data.
+- Tanda `-` berarti tidak ada tindakan utama pada entitas tersebut dalam proses terkait.
 
 ## 8. Kamus Data Awal
 
-| Elemen | Arti | Contoh | Aturan | Penanggung Jawab |
-|---|---|---|---|---|
-| `no_anggota` | Nomor anggota koperasi | A-0457 | Unik, format A-4 digit | Ketua |
-| `nim_anggota` | NIM anggota | 2301010123 | Unik, 10 digit | Ketua |
-| `no_hp_anggota` | Nomor HP anggota | 0812xxxx | Data pribadi, akses terbatas | Ketua |
-| `no_nota_penjualan` | Nomor nota penjualan | PJ-2609-0142 | Unik per nota | Kasir |
-| `harga_satuan_detail_penjualan` | Harga jual saat transaksi | 4000 | Bilangan bulat ≥ 0 (rupiah) | Kasir |
-| `stok_barang` | Jumlah barang tersedia | 35 | Bilangan bulat ≥ 0 (AB-03) | Petugas gudang |
-| `poin_loyalitas` | Jumlah poin loyalitas yang dimiliki anggota | 25 | Bilangan bulat ≥ 0 | Ketua |
+Kamus data awal berisi elemen data penting dari setiap entitas yang digunakan dalam pengelolaan data Kopma. Setiap elemen dilengkapi dengan penanggung jawab data.
+
+| No. | Entitas | Elemen Data | Keterangan | Penanggung Jawab |
+|---:|---|---|---|---|
+| 1 | Anggota | `nim_anggota` | NIM anggota sebagai identitas anggota | Petugas pendaftaran |
+| 2 | Anggota | `nama_anggota` | Nama lengkap anggota | Petugas pendaftaran |
+| 3 | Anggota | `no_hp_anggota` | Nomor telepon anggota | Ketua koperasi |
+| 4 | Anggota | `status_anggota` | Status keanggotaan untuk menentukan hak diskon | Ketua koperasi |
+| 5 | Anggota | `poin_loyalitas` | Jumlah poin loyalitas yang dimiliki anggota | Kasir |
+| 6 | Barang | `kode_barang` | Kode unik untuk mengidentifikasi barang | Petugas gudang |
+| 7 | Barang | `nama_barang` | Nama barang yang dijual | Petugas gudang |
+| 8 | Barang | `harga_barang` | Harga jual barang | Ketua koperasi |
+| 9 | Barang | `stok_barang` | Jumlah stok barang yang tersedia | Petugas gudang |
+| 10 | Barang | `stok_minimum_barang` | Batas minimum stok untuk menentukan kebutuhan pemesanan | Petugas gudang |
+| 11 | Penjualan | `no_nota_penjualan` | Nomor unik nota penjualan | Kasir |
+| 12 | Penjualan | `tanggal_waktu_penjualan` | Tanggal dan waktu transaksi | Kasir |
+| 13 | Penjualan | `total_pembayaran` | Total pembayaran setelah perhitungan transaksi dan diskon | Kasir |
+| 14 | Detail Penjualan | `jumlah_detail_penjualan` | Jumlah barang yang dibeli dalam satu baris detail | Kasir |
+| 15 | Detail Penjualan | `harga_satuan_detail_penjualan` | Harga satuan barang saat transaksi | Kasir |
+| 16 | Petugas | `id_petugas` | Identitas unik petugas | Ketua koperasi |
+| 17 | Petugas | `nama_petugas` | Nama petugas koperasi | Ketua koperasi |
+| 18 | Pemasok | `id_pemasok` | Identitas unik pemasok | Petugas gudang |
+| 19 | Pemasok | `nama_pemasok` | Nama pemasok barang | Petugas gudang |
+| 20 | Pembelian | `no_pembelian` | Nomor transaksi pembelian dari pemasok | Petugas gudang |
+| 21 | Pembelian | `tanggal_pembelian` | Tanggal pembelian barang dari pemasok | Petugas gudang |
+| 22 | Detail Pembelian | `jumlah_detail_pembelian` | Jumlah barang yang dibeli dari pemasok | Petugas gudang |
+| 23 | Detail Pembelian | `harga_beli_detail_pembelian` | Harga beli per satuan barang | Petugas gudang |
 
 ## 9. Kebutuhan Non-Fungsional Data
 

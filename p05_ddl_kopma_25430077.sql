@@ -30,6 +30,7 @@ CREATE TABLE barang (
     UNIQUE KEY uq_barang_kode (kode_barang),
     CONSTRAINT ck_barang_stok CHECK (stok_barang >= 0),
     CONSTRAINT ck_barang_harga CHECK (harga_jual_barang >= 0)
+    CONSTRAINT ck_barang_stok_min CHECK (stok_min_barang >= 0)
 ) ENGINE=InnoDB;
 
 CREATE TABLE anggota (

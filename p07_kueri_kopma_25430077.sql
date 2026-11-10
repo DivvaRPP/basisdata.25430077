@@ -87,3 +87,26 @@ FROM detail_penjualan d
 JOIN penjualan p ON d.id_penjualan = p.id_penjualan
 JOIN barang b ON d.id_barang = b.id_barang
 WHERE p.no_nota_penjualan = 'PJ-2609-0142';
+
+-- E.1: Menampilkan nama barang dengan huruf kapital dan format Rupiah
+SELECT kode_barang,
+       UPPER(nama_barang) AS nama_barang,
+       CONCAT('Rp', FORMAT(harga_jual_barang, 0, 'id_ID')) AS harga
+FROM barang
+ORDER BY nama_barang;
+
+-- E.2: Contoh kueri yang salah secara semantik
+SELECT kode_barang, nama_barang, kategori_barang, harga_jual_barang
+FROM barang
+WHERE kategori_barang = 'ATK'
+   OR kategori_barang = 'minuman'
+   AND harga_jual_barang < 4000
+ORDER BY kode_barang;
+
+-- E.2: Kueri yang sudah diperbaiki
+SELECT kode_barang, nama_barang, kategori_barang, harga_jual_barang
+FROM barang
+WHERE (kategori_barang = 'ATK'
+       OR kategori_barang = 'minuman')
+  AND harga_jual_barang < 4000
+ORDER BY kode_barang;
